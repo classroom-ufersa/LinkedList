@@ -6,6 +6,7 @@
 - [Estrutura](#estrutura)
 - [Vantagens](#vantagens)
 - [Desvantagens](#desvantagens)
+- [Funções implementadas]     (#algumas-funções-da-lista-encadeada-simples)
 
 ### Descrição
 
@@ -17,7 +18,7 @@
 
 ### Estrutura
 
-```
+```C
 struct lista
 {
     int info;
@@ -44,3 +45,233 @@ struct lista
 2. **Gasto de memória extra por elemento:** Cada nó requer espaço extra para o ponteiro, aumentando o consumo de memória em comparação com arrays.
 
 3. **Complexidade de implementação:** Implementar operações pode ser mais complexo devido à gestão de ponteiros e alocação dinâmica de memória.
+
+## Algumas funções da Lista Encadeada Simples
+
+### lst_cria
+
+- **Descrição:** Cria uma lista encadeada vazia.
+
+```c
+Lista *lst_cria(void)
+{
+    return NULL;
+}
+```
+
+- **Uso:**
+
+```c
+Lista *lista = lst_cria();
+```
+
+### lst_insere
+
+- **Descrição:** Insere um novo elemento no início da lista.
+
+```c
+Lista *lst_insere(Lista *l, int v)
+{
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
+    if (novo == NULL)
+    {
+        printf("[ERRO] Memória insuficiente!");
+        exit(1);
+    }
+    novo->info = v;
+    novo->prox = l;
+    return novo;
+}
+```
+
+- **Uso:**
+
+```c
+lista = lst_insere(lista, 42);
+```
+
+### lst_vazia
+
+- **Descrição:** Verifica se a lista está vazia.
+
+```c
+int lst_vazia(Lista *l)
+{
+    return (l == NULL);
+}
+```
+
+- **Uso:**
+
+```c
+if (lst_vazia(lista)) {
+    printf("A lista está vazia.\n");
+}
+```
+
+### lst_imprime
+
+- **Descrição:** Imprime os elementos da lista.
+
+```c
+void lst_imprime(Lista *l)
+{
+    Lista *p;
+    for (p = l; p != NULL; p = p->prox)
+    {
+        printf(" Info = %d \n", p->info);
+    }
+}
+```
+
+- **Uso:**
+
+```c
+lst_imprime(lista);
+```
+
+### lst_busca
+
+- **Descrição:** Busca por um elemento na lista.
+
+```c
+Lista *lst_busca(int elemento, Lista *l)
+{
+    Lista *p;
+    for (p = l; p != NULL; p = p->prox)
+    {
+        if (p->info == elemento)
+            return p;
+    }
+    return NULL;
+}
+```
+
+- **Uso:**
+
+```c
+Lista *resultado = lst_busca(42, lista);
+```
+
+### lst_retira
+
+- **Descrição:** Remove um elemento da lista.
+
+```c
+Lista *lst_retira(Lista *l, int v)
+{
+    Lista *ant = NULL;
+    Lista *p = l;
+    while (p->info != v)
+    {
+        if (p == NULL)
+            return l;
+        ant = p;
+        p = p->prox;
+    }
+    if (ant == NULL)
+        l = p->prox;
+    else
+        ant->prox = p->prox;
+    free(p);
+    return l;
+}
+```
+
+- **Uso:**
+
+```c
+lista = lst_retira(lista, 42);
+```
+
+### lst_libera
+
+- **Descrição:** Libera a memória ocupada pela lista.
+
+```c
+void lst_libera(Lista *l)
+{
+    Lista *p = l;
+    Lista *t;
+    while (p != NULL)
+    {
+        t = p->prox;
+        free(p);
+        p = t;
+    }
+}
+```
+
+- **Uso:**
+
+```c
+lst_libera(lista);
+```
+
+### lst_insere_ordenada
+
+- **Descrição:** Insere um elemento de forma ordenada na lista.
+
+```c
+Lista *lst_insere_ordenada(Lista *l, int v)
+{
+    Lista *novo;
+    Lista *ant = NULL;
+    Lista *p = l;
+    while (p != NULL && p->info < v)
+    {
+        ant = p;
+        p = p->prox;
+    }
+    novo = (Lista *)malloc(sizeof(Lista));
+    novo->info = v;
+    if (ant == NULL)
+    {
+        novo->prox = l;
+        l = novo;
+    }
+    else
+    {
+        novo->prox = ant->prox;
+        ant->prox = novo;
+    }
+    return l;
+}
+```
+
+- **Uso:**
+
+```c
+lista = lst_insere_ordenada(lista, 42);
+```
+
+### lst_ler_arquivo
+
+- **Descrição:** Lê valores de um arquivo e insere na lista.
+
+```c
+Lista *lst_ler_arquivo(char *nome_arquivo)
+{
+    FILE *arquivo;
+    int valor;
+    Lista *l = lst_cria();
+    arquivo = fopen(nome_arquivo, "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
+    while (fscanf(arquivo, "%d", &valor) != EOF)
+    {
+        l = lst_insere(l, valor);
+    }
+    fclose(arquivo);
+    return l;
+}
+```
+
+- **Uso:**
+
+```c
+lista = lst_ler_arquivo("dados.txt");
+```

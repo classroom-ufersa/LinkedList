@@ -5,8 +5,6 @@ Listas encadeadas são estruturas de dados que permitem armazenar uma coleção
 Neste arquivo, temos a implementação de uma lista encadeada simples de inteiros.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "lista.h"
 
 struct lista
@@ -51,7 +49,7 @@ void lst_imprime(Lista *l)
 	Lista *p;
 	for (p = l; p != NULL; p = p->prox)
 	{
-		printf(" Info = %d \n", p->info);
+		printf("\tInfo = %d \n", p->info);
 	}
 }
 

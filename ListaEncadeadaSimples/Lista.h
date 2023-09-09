@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct lista Lista;
 
 // função que cria uma lista vazia (NULL)

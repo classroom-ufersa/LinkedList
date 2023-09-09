@@ -6,7 +6,7 @@
 - [Estrutura](#estrutura)
 - [Vantagens](#vantagens)
 - [Desvantagens](#desvantagens)
-- [Funções implementadas]     (#algumas-funções-da-lista-encadeada-simples)
+- [Funções implementadas](#algumas-funções-da-lista-encadeada-simples)
 
 ### Descrição
 

@@ -7,7 +7,7 @@
 - [Vantagens](#vantagens)
 - [Desvantagens](#desvantagens)
 - [TAD](#tad-lista)
-- [Funções implementadas](#algumas-funções-da-lista-encadeada-simples)
+- [Funções implementadas](#algumas-funções-da-tad-lista)
 
 ### Descrição
 

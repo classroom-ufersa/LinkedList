@@ -6,6 +6,7 @@
 - [Estrutura](#estrutura)
 - [Vantagens](#vantagens)
 - [Desvantagens](#desvantagens)
+- [TAD](#tad-lista)
 - [Funções implementadas](#algumas-funções-da-lista-encadeada-simples)
 
 ### Descrição
@@ -46,7 +47,23 @@ struct lista
 
 3. **Complexidade de implementação:** Implementar operações pode ser mais complexo devido à gestão de ponteiros e alocação dinâmica de memória.
 
-## Algumas funções da Lista Encadeada Simples
+## TAD lista
+
+### Porque utilizar uma TAD?
+
+- **Reutilização de Código:** Uma vez que as operações da lista estão encapsuladas no TAD Lista, elas podem ser reutilizadas em diferentes partes do código ou em projetos diferentes sem a necessidade de reimplementação. Isso economiza tempo e esforço.
+
+- **Encapsulamento:** O TAD Lista permite encapsular a implementação da lista. Isso significa que você pode mudar a implementação interna da lista sem afetar o código que a utiliza.
+
+- **Ocultação de Complexidade:** A implementação de estruturas de dados como listas encadeadas pode ser complexa, envolvendo alocação de memória, gerenciamento de ponteiros e manipulação de nós. O TAD Lista oculta essa complexidade, tornando mais fácil para outros desenvolvedores usar a lista sem se preocupar com os detalhes complicados.
+
+- **Padronização:** O TAD Lista estabelece um conjunto padrão de operações e nomes para trabalhar com listas. Isso torna o código mais consistente e fácil de entender para qualquer desenvolvedor.
+
+- **Facilita a Depuração:** Se ocorrer um erro em uma operação da lista, é mais fácil depurar(Achar o erro) quando você tem uma interface clara e bem definida para a lista. Você pode isolar o problema mais facilmente.
+
+- **Documentação:** O TAD Lista serve como documentação clara das operações suportadas pela lista. Isso ajuda a vocês (desenvolvedores) a entender como usar a lista corretamente.
+
+### **Algumas funções da TAD Lista:**
 
 ### lst_cria
 

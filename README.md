@@ -553,3 +553,217 @@ void listd_imprime(Listad *l)
 ```c
 listd_imprime(lista);
 ```
+## Listas Encadeadas Circulares Simples
+
+### Descrição lista circular simples
+
+Uma lista encadeada circular simples é uma estrutura de dados na qual cada nó da lista aponta para o próximo nó, formando um ciclo no final da lista, onde o último nó aponta de volta para o primeiro nó. Isso cria uma sequência contínua de elementos que podem ser percorridos indefinidamente.
+
+### Estrutura lista circular simples
+
+A estrutura de um nó em uma lista encadeada circular simples é igual à de uma lista encadeada simples. Cada nó contém um campo de dado e um ponteiro para o próximo nó na lista.
+
+![Lista encadeada duplas](https://github.com/JhoanDev/LinkedList/blob/main/ListaEncadeadaDupla/Img/listaencadeadadupla.png)
+
+**imagem tirada do site:** [SauloArisa](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsaulo.arisa.com.br%2Fwiki%2Findex.php%2FListas_Duplamente_Encadeadas&psig=AOvVaw1W8NZ6mHZglLwEhmvsn0DA&ust=1695564177495000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCx6fXywIEDFQAAAAAdAAAAABAK)
+
+
+```c
+struct lista
+{
+    int dado;
+    struct lista *prox;
+};
+```
+
+- **Info:** Representa o dado armazenado na lista, que, no exemplo acima, é um valor inteiro. No entanto, pode ser utilizado para armazenar qualquer tipo de dado, inclusive estruturas.
+
+- **Prox:** Armazena o endereço do próximo elemento da lista. Em outras palavras, cada nó mantém um ponteiro para o próximo elemento usando este campo.
+
+### Vantagens lista circular simples
+
+1. **As mesmas vantagens da lista simples:** Sim ela tem as mesmas vantagens da lista simples e algumas extras como a descrita a seguir. 
+
+2. **Loop Infinito:**  A principal vantagem de uma lista encadeada circular simples é a capacidade de criar um loop infinito de elementos. Isso pode ser útil em algoritmos que exigem que a lista seja percorrida continuamente, sem um ponto final.
+
+### Desvantagens lista circular simples
+
+1. **As mesmas desvantagens da lista simples:** Sim ela também tem as mesmas desvantagens da lista simples e algumas extras como a descrita a seguir. 
+
+2. **Dificuldade na Detecção do Fim:** Na lista simples, basta verificar se está apontando para NULL. Na lista circular, uma das soluções para detectar o fim é, antes de começar a percorrer, guardar o nó raiz em um ponteiro auxiliar. A cada passo que você der na lista, compare se aquele nó é igual ao nó raiz. Caso seja igual, significa que você já percorreu toda a lista.
+
+### **Algumas funções da TAD Lista Circular Simples:**
+
+### listc_cria
+
+- **Descrição:** Inicia uma lista encadeada circular simples vazia.
+
+```c
+Lista *listc_cria(void)
+{
+    return NULL;
+}
+```
+
+- **uso:**
+
+```c
+Lista *lista = listc_cria();
+```
+
+### listc_libera
+
+- **Descrição:** Libera a memória ocupada pelos nós da lista encadeada circular simples.
+
+```c
+void listc_libera(Lista *l)
+{
+    Lista *p = l;
+    if (p != NULL)
+    {
+        do
+        {
+            Lista *t = p->prox;
+            free(p);
+            p = t;
+        } while (p != l);
+    }
+}
+```
+
+- **uso:**
+
+```c
+listc_libera(lista);
+```
+
+### listc_adc
+
+- **Descrição:** Insere um novo valor no início da lista encadeada circular simples.
+
+```c
+Lista *listc_adc(Lista *l, int i)
+{
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
+    if (novo == NULL)
+    {
+        printf("[ERRO] Memória insuficiente!");
+        exit(1);
+    }
+    novo->dado = i;
+    if (l == NULL) // Se a lista estiver vazia
+    {
+        novo->prox = novo; // O próximo aponta para si mesmo
+        return novo;       // Retorna a nova célula como primeira e última
+    }
+    novo->prox = l->prox; // O próximo aponta para a primeira célula
+    l->prox = novo;       // Atualiza o próximo da última célula para apontar para a nova célula
+    return l;             // Retorna a primeira célula da lista
+}
+```
+
+- **uso:**
+
+```c
+lista = listc_adc(lista, 42);
+```
+
+### listc_busca
+
+- **Descrição:** Busca por um elemento na lista encadeada circular simples.
+
+```c
+Lista *listc_busca(Lista *l, int v)
+{
+    Lista *p = l;
+    while (p != NULL && p->prox != l && p->dado != v)
+    {
+        p = p->prox;
+        if (p->dado == v)
+            return p;
+    }
+    return NULL;
+}
+```
+
+- **uso:**
+
+```c
+Lista *resultado = listc_busca(42, lista);
+```
+
+### listc_retira
+
+- **Descrição:** Retira um elemento da lista encadeada circular simples.
+
+```c
+Lista *listc_retira(Lista *l, int v)
+{
+    Lista *ant = NULL;
+    Lista *p = l;
+    while (p != NULL && p->dado != v)
+    {
+        ant = p;
+        p = p->prox;
+    }
+    if (p == NULL)
+    {
+        return l; // Não achou
+    }
+    // Retira o elemento
+    ant->prox = p->prox;
+    free(p);
+    return l;
+}
+```
+
+- **uso:**
+
+```c
+lista = listc_retira(lista, 42);
+```
+
+### listc_vazia
+
+- **Descrição:** Verifica se a lista encadeada circular simples está vazia.
+
+```c
+int listc_vazia(Lista *l)
+{
+    if (l == NULL)
+        return 1;
+    else
+        return 0;
+}
+```
+
+- **uso:**
+
+```c
+if (listc_vazia(lista))
+{
+    printf("A lista está vazia.\n");
+}
+```
+
+### listc_imprime
+
+- **Descrição:**  Imprime a informação de todos os elementos da lista encadeada circular simples.
+
+```c
+void listc_imprime(Lista *l)
+{
+    Lista *p = l;
+    do
+    {
+        printf("Dado = %d\n", p->dado);
+        p = p->prox;
+    } while (p != l);
+}
+```
+
+- **uso:**
+
+```c
+listc_imprime(lista);
+```

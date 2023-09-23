@@ -315,7 +315,7 @@ A principal diferença entre uma lista encadeada simples e uma lista encadeada d
 
 As listas encadeadas duplas são uma escolha valiosa quando a flexibilidade e a capacidade de travessia bidirecional são necessárias, mas é importante considerar cuidadosamente as vantagens e desvantagens ao escolher essa estrutura de dados para um determinado problema.
 
-![Lista encadeada duplas](https://github.com/JhoanDev/LinkedList/blob/main/ListaEncadeadaDupla/Img/listaencadeadadupla.png)
+![Lista encadeada duplas](https://github.com/JhoanDev/ListaEncadeadaDupla/Img/listaencadeadadupla.png)
 
 **imagem tirada do site:** [SauloArisa](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsaulo.arisa.com.br%2Fwiki%2Findex.php%2FListas_Duplamente_Encadeadas&psig=AOvVaw1W8NZ6mHZglLwEhmvsn0DA&ust=1695564177495000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCx6fXywIEDFQAAAAAdAAAAABAK)
 

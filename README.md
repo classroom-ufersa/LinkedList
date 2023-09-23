@@ -15,6 +15,14 @@
   - [Estrutura](#estrutura-lista-dupla)
   - [Vantagens](#vantagens-lista-dupla)
   - [Desvantagens](#desvantagens-lista-dupla)
+  - [Algumas Funções da TAD Lista Dupla](#algumas-funções-da-tad-lista-dupla)
+- [Listas Encadeadas Circulares Simples](#listas-encadeadas-circulares-simples)
+  - [Descrição](#descrição-lista-circular-simples)
+  - [Estrutura](#estrutura-lista-circular-simples)
+  - [Vantagens](#vantagens-lista-circular-simples)
+  - [Desvantagens](#desvantagens-lista-circular-simples)
+  - [Algumas Funções da TAD Lista Circular Simples](#algumas-funções-da-tad-lista-circular-simples)
+
 
 
 ## Introdução
@@ -352,3 +360,196 @@ struct lista_dupla
 
 3. **Acesso Direto Ineficiente:** Assim como nas listas encadeadas simples, o acesso direto a um elemento específico em uma lista encadeada dupla requer percorrer a lista, o que pode ser menos eficiente do que o acesso direto por índice em arrays.
 
+### **Algumas Funções da TAD Lista Dupla:**
+
+### listd_cria
+
+- **Descrição:** Cria uma lista encadeada dupla vazia.
+
+```c
+Listad *listd_cria(void)
+{
+    return NULL;
+}
+```
+
+- **uso:**
+
+```c
+Listad *lista = listd_cria();
+```
+
+### listd_libera
+
+- **Descrição:** Libera a memória ocupada pela lista encadeada dupla.
+
+```c
+void listd_libera(Listad *l)
+{
+    Listad *p = l;
+    while (p != NULL)
+    {
+        Listad *t = p->prox;
+        free(p);
+        p = t;
+    }
+}
+```
+
+- **uso:**
+
+```c
+listd_libera(lista);
+```
+
+### listd_adc
+
+- **Descrição:** Adiciona um novo valor na lista encadeada dupla.
+
+```c
+Listad *listd_adc(Listad *l, int v)
+{
+    Listad *novo = (Listad *)malloc(sizeof(Listad));
+    if (novo == NULL)
+    {
+        printf("[ERRO] Memória insuficiente!");
+        exit(1);
+    }
+    novo->dado = v;
+    novo->prox = NULL;
+    novo->ant = NULL;
+
+    if (l == NULL)
+    {
+        return novo;
+    }
+
+    Listad *ultimo = l;
+    while (ultimo->prox != NULL)
+    {
+        ultimo = ultimo->prox;
+    }
+
+    ultimo->prox = novo;
+    novo->ant = ultimo;
+
+    return l;
+}
+```
+
+- **uso:**
+
+```c
+lista = listd_adc(lista, 42);
+```
+
+### listd_busca
+
+- **Descrição:** Busca por um item na lista encadeada dupla.
+
+```c
+Listad *listd_busca(Listad *l, int v)
+{
+    Listad *p;
+    for (p = l; p != NULL; p = p->prox)
+    {
+        if (p->dado == v)
+        {
+            return p;
+        }
+    }
+    return NULL; // não achou
+}
+```
+
+- **uso:**
+
+```c
+Listad *resultado = listd_busca(42, lista);
+```
+
+### listd_retira
+
+- **Descrição:** Remove um nó da lista encadeada dupla.
+
+```c
+Listad *listd_retira(Listad *l, int v)
+{
+    Listad *p = listd_busca(l, v);
+
+    if (p == NULL)
+    {
+        return l; // não achou
+    }
+
+    // Remove o elemento
+    if (l == p) // Testa se é o primeiro elemento
+    {
+        l = p->prox;
+        if (p->prox != NULL)
+        {
+            p->prox->ant = NULL;
+        }
+    }
+    else
+    {
+        p->ant->prox = p->prox; // Remove o do meio
+        if (p->prox != NULL)
+        {
+            p->prox->ant = p->ant;
+        }
+    }
+    free(p);
+    return l;
+}
+```
+
+- **uso:**
+
+```c
+lista = listd_retira(lista, 42);
+```
+
+### listd_vazia
+
+- **Descrição:** Verifica se a lista encadeada dupla está vazia.
+
+```c
+int listd_vazia(Listad *l)
+{
+    if (l == NULL)
+        return 1;
+    else
+        return 0;
+}
+```
+
+- **uso:**
+
+```c
+if (listd_vazia(lista))
+{
+    printf("A lista está vazia.\n");
+}
+```
+
+### listd_imprime
+
+- **Descrição:** Imprime o valor de todos os elementos da lista encadeada dupla.
+
+```c
+void listd_imprime(Listad *l)
+{
+    Listad *p;
+    for (p = l; p != NULL; p = p->prox)
+    {
+        printf("Dado = %d\n", p->dado);
+    }
+}
+```
+
+- **uso:**
+
+```c
+listd_imprime(lista);
+```

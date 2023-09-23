@@ -1,15 +1,43 @@
-# Lista Encadeada Simples (Linked List)
+# Listas Encadeadas (Linked List)
 
 ## Tópicos
 
-- [Descrição](#descrição)
-- [Estrutura](#estrutura)
-- [Vantagens](#vantagens)
-- [Desvantagens](#desvantagens)
-- [TAD](#tad-lista)
-- [Funções implementadas](#algumas-funções-da-tad-lista)
+- [Introdução](#introdução)
+- [Porque Utilizar TADS?](#porque-utilizar-uma-tad)
+- [Listas Encadeadas Simples](#listas-encadeadas-simples)
+  - [Descrição](#descrição-lista-simples)
+  - [Estrutura](#estrutura-lista-simples)
+  - [Vantagens](#vantagens-lista-simples)
+  - [Desvantagens](#desvantagens-lista-simples)
+  - [Algumas Funções da TAD Lista](#algumas-funções-da-tad-lista)
+- [Listas Encadeadas Duplas](#listas-encadeadas-duplas)
+  - [Descrição](#descrição-lista-dupla)
+  - [Estrutura](#estrutura-lista-dupla)
+  - [Vantagens](#vantagens-lista-dupla)
+  - [Desvantagens](#desvantagens-lista-dupla)
 
-### Descrição
+
+## Introdução
+
+Uma lista encadeada é uma estrutura de dados que consiste em nós ligados em uma sequência, onde cada nó contém campos: um campo de dados para armazenar informações e para ponteiros.
+
+## Porque utilizar uma TAD?
+
+- **Reutilização de Código:** Uma vez que as operações da lista estão encapsuladas no TAD Lista, elas podem ser reutilizadas em diferentes partes do código ou em projetos diferentes sem a necessidade de reimplementação. Isso economiza tempo e esforço.
+
+- **Encapsulamento:** O TAD Lista permite encapsular a implementação da lista. Isso significa que você pode mudar a implementação interna da lista sem afetar o código que a utiliza.
+
+- **Ocultação de Complexidade:** A implementação de estruturas de dados como listas encadeadas pode ser complexa, envolvendo alocação de memória, gerenciamento de ponteiros e manipulação de nós. O TAD Lista oculta essa complexidade, tornando mais fácil para outros desenvolvedores usar a lista sem se preocupar com os detalhes complicados.
+
+- **Padronização:** O TAD Lista estabelece um conjunto padrão de operações e nomes para trabalhar com listas. Isso torna o código mais consistente e fácil de entender para qualquer desenvolvedor.
+
+- **Facilita a Depuração:** Se ocorrer um erro em uma operação da lista, é mais fácil depurar(Achar o erro) quando você tem uma interface clara e bem definida para a lista. Você pode isolar o problema mais facilmente.
+
+- **Documentação:** O TAD Lista serve como documentação clara das operações suportadas pela lista. Isso ajuda a vocês (desenvolvedores) a entender como usar a lista corretamente.
+
+## Listas Encadeadas Simples
+
+### Descrição lista simples
 
 - Uma lista encadeada simples em C é uma estrutura de dados que consiste em nós ligados em uma sequência, onde cada nó contém dois campos: um campo de dados para armazenar informações e um ponteiro que aponta para o próximo nó na lista.
 
@@ -17,7 +45,8 @@
 
 ![Lista encadeada simples](https://github.com/JhoanDev/LinkedList/blob/main/ListaEncadeadaSimples/Img/Lista_encadeada_simples_representacao.png)
 
-### Estrutura
+**imagem tirada do site:** [SauloArisa](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsaulo.arisa.com.br%2Fwiki%2Findex.php%2FListas_Encadeadas_Simples&psig=AOvVaw2dbQagPe0tVilGhoaTtbFv&ust=1695563841998000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKDI3dXxwIEDFQAAAAAdAAAAABAE)
+### Estrutura lista simples
 
 ```C
 struct lista
@@ -31,7 +60,7 @@ struct lista
 
 - **Prox:** Armazena o endereço do próximo elemento da lista. Em outras palavras, cada nó mantém um ponteiro para o próximo elemento usando este campo.
 
-### Vantagens
+### Vantagens lista simples
 
 1. **Alocação Dinâmica de Memória:** Permite a alocação dinâmica de memória, facilitando a adição e remoção de elementos conforme necessário.
 
@@ -39,29 +68,13 @@ struct lista
 
 3. **Redimensionamento Dinâmico:** A lista pode crescer ou encolher conforme necessário, adequando-se a tamanhos variáveis de dados.
 
-### Desvantagens
+### Desvantagens lista simples
 
 1. **Acesso direto ineficiente:** O acesso a um elemento específico requer percorrer a lista, o que é menos eficiente que arrays para acesso direto por índice.
 
 2. **Gasto de memória extra por elemento:** Cada nó requer espaço extra para o ponteiro, aumentando o consumo de memória em comparação com arrays.
 
 3. **Complexidade de implementação:** Implementar operações pode ser mais complexo devido à gestão de ponteiros e alocação dinâmica de memória.
-
-## TAD lista
-
-### Porque utilizar uma TAD?
-
-- **Reutilização de Código:** Uma vez que as operações da lista estão encapsuladas no TAD Lista, elas podem ser reutilizadas em diferentes partes do código ou em projetos diferentes sem a necessidade de reimplementação. Isso economiza tempo e esforço.
-
-- **Encapsulamento:** O TAD Lista permite encapsular a implementação da lista. Isso significa que você pode mudar a implementação interna da lista sem afetar o código que a utiliza.
-
-- **Ocultação de Complexidade:** A implementação de estruturas de dados como listas encadeadas pode ser complexa, envolvendo alocação de memória, gerenciamento de ponteiros e manipulação de nós. O TAD Lista oculta essa complexidade, tornando mais fácil para outros desenvolvedores usar a lista sem se preocupar com os detalhes complicados.
-
-- **Padronização:** O TAD Lista estabelece um conjunto padrão de operações e nomes para trabalhar com listas. Isso torna o código mais consistente e fácil de entender para qualquer desenvolvedor.
-
-- **Facilita a Depuração:** Se ocorrer um erro em uma operação da lista, é mais fácil depurar(Achar o erro) quando você tem uma interface clara e bem definida para a lista. Você pode isolar o problema mais facilmente.
-
-- **Documentação:** O TAD Lista serve como documentação clara das operações suportadas pela lista. Isso ajuda a vocês (desenvolvedores) a entender como usar a lista corretamente.
 
 ### **Algumas funções da TAD Lista:**
 
@@ -292,3 +305,50 @@ Lista *lst_ler_arquivo(char *nome_arquivo)
 ```c
 lista = lst_ler_arquivo("dados.txt");
 ```
+## Listas Encadeadas Duplas
+
+### Descrição lista dupla
+
+Uma lista encadeada dupla é uma estrutura de dados que expande a funcionalidade de uma lista encadeada simples, permitindo que cada nó mantenha referências tanto para o próximo quanto para o nó anterior na sequência. Isso significa que, além de apontar para o próximo nó, cada nó também aponta para o nó anterior, criando uma conexão bidirecional entre os elementos.
+
+A principal diferença entre uma lista encadeada simples e uma lista encadeada dupla é que, em uma lista dupla, você pode percorrer a lista em ambas as direções: do início para o fim e do fim para o início.
+
+As listas encadeadas duplas são uma escolha valiosa quando a flexibilidade e a capacidade de travessia bidirecional são necessárias, mas é importante considerar cuidadosamente as vantagens e desvantagens ao escolher essa estrutura de dados para um determinado problema.
+
+![Lista encadeada duplas](https://github.com/JhoanDev/LinkedList/blob/main/ListaEncadeadaDupla/Img/listaencadeadadupla.png)
+
+**imagem tirada do site:** [SauloArisa](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsaulo.arisa.com.br%2Fwiki%2Findex.php%2FListas_Duplamente_Encadeadas&psig=AOvVaw1W8NZ6mHZglLwEhmvsn0DA&ust=1695564177495000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCx6fXywIEDFQAAAAAdAAAAABAK)
+
+### Estrutura lista dupla
+
+```c
+struct lista_dupla
+{
+    int info;
+    struct lista_dupla *prox;
+    struct lista_dupla *ant;
+};
+```
+
+- **Info:** Representa o dado armazenado na lista dupla, que pode ser qualquer tipo de dado, incluindo estruturas ou tipos personalizados.
+
+- **Prox:** Armazena o endereço do próximo elemento na lista dupla, permitindo percorrer a lista da esquerda para a direita.
+
+- **Ant:** Armazena o endereço do elemento anterior na lista dupla, permitindo percorrer a lista da direita para a esquerda.
+
+### Vantagens lista dupla
+
+1. **Travessia Bidirecional:** Uma das principais vantagens das listas encadeadas duplas é a capacidade de percorrer a lista em ambas as direções. Isso permite acesso eficiente tanto do início para o fim quanto do fim para o início, o que pode ser útil em muitos cenários, como a necessidade de encontrar elementos próximos ao final da lista.
+
+2. **Inserção e Exclusão Eficiente em Qualquer Posição:** As listas encadeadas duplas permitem a inserção e exclusão eficiente de elementos em qualquer posição da lista. Isso ocorre porque cada nó mantém referências para os nós anterior e posterior, facilitando a atualização dos ponteiros durante a inserção ou exclusão.
+
+3. **Flexibilidade:** As listas duplas são altamente flexíveis e podem ser usadas em uma variedade de cenários. Elas são especialmente úteis quando a ordem dos elementos é importante e quando operações de inserção e exclusão frequentes são necessárias.
+
+### Desvantagens lista dupla
+
+1. **Consumo de Memória:** Em comparação com algumas outras estruturas de dados, as listas encadeadas duplas podem consumir mais memória devido à necessidade de manter dois ponteiros (um para o próximo nó e outro para o nó anterior) em cada nó da lista. Isso pode ser uma desvantagem em sistemas com restrições de memória.
+
+2. **Complexidade de Implementação:** Implementar e manter listas encadeadas duplas pode ser mais complexo do que listas encadeadas simples ou arrays. Isso ocorre porque é necessário gerenciar os ponteiros de forma mais cuidadosa, garantindo que eles sejam atualizados corretamente durante as operações de inserção e exclusão.
+
+3. **Acesso Direto Ineficiente:** Assim como nas listas encadeadas simples, o acesso direto a um elemento específico em uma lista encadeada dupla requer percorrer a lista, o que pode ser menos eficiente do que o acesso direto por índice em arrays.
+

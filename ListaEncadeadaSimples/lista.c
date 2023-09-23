@@ -101,29 +101,32 @@ void lst_libera(Lista *l)
 	}
 }
 
-Lista *lst_insere_ordenada(Lista *l, int v)
-{
-	Lista *novo;
-	Lista *ant = NULL;
-	Lista *p = l;
-	while (p != NULL && p->info < v)
-	{
-		ant = p;
-		p = p->prox;
-	}
-	novo = (Lista *)malloc(sizeof(Lista));
-	novo->info = v;
-	if (ant == NULL)
-	{
-		novo->prox = l;
-		l = novo;
-	}
-	else
-	{
-		novo->prox = ant->prox;
-		ant->prox = novo;
-	}
-	return l;
+Lista *lst_insere_ordenada(Lista *l, int valor) {
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
+    if (novo == NULL) {
+        perror("Erro ao alocar memória");
+        exit(1);
+    }
+    novo->info = valor;
+    novo->prox = NULL;
+
+    if (l == NULL || valor < l->info) {
+        novo->prox = l;
+        return novo;
+    }
+
+    Lista *ant = NULL;
+    Lista *atual = l;
+
+    while (atual != NULL && valor > atual->info) {
+        ant = atual;
+        atual = atual->prox;
+    }
+
+    ant->prox = novo;
+    novo->prox = atual;
+
+    return l;
 }
 
 Lista *lst_ler_arquivo(char *nome_arquivo)

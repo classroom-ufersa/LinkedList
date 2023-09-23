@@ -24,18 +24,3 @@ int listd_vazia(Listad *l);
 
 // imprime o valor de todos os valores da lista
 void listd_imprime(Listad *l);
-
-// adiciona em uma lista dupla circular
-Listad *listdc_adc(Listad *l, int v);
-
-// busca um element0
-Listad *listdc_busca(Listad *l, int v);
-
-// retira um elemento
-Listad *listdc_retira(Listad *l, int v);
-
-// verifica se a lista esta vazia
-int listdc_vazia(Listad *l);
-
-// imprime a lista
-void listdc_imprime(Listad *l);

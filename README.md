@@ -1,8 +1,8 @@
 # Listas Encadeadas (Linked List)
 
 ## Tópicos
-
 - [Introdução](#introdução)
+- [Como Baixar, Compilar e Executar Código de Repositório via Terminal](#baixar-compilar-e-executar-código-de-repositório-via-terminal)
 - [Porque Utilizar TADS?](#porque-utilizar-uma-tad)
 - [Listas Encadeadas Simples](#listas-encadeadas-simples)
   - [Descrição](#descrição-lista-simples)
@@ -22,12 +22,61 @@
   - [Vantagens](#vantagens-lista-circular-simples)
   - [Desvantagens](#desvantagens-lista-circular-simples)
   - [Algumas Funções da TAD Lista Circular Simples](#algumas-funções-da-tad-lista-circular-simples)
+- [Listas Encadeadas Circulares Duplas](#listas-encadeadas-circulares-duplas)
+  - [Descrição](#descrição-lista-circular-dupla)
+  - [Estrutura](#estrutura-lista-circular-dupla)
+  - [Vantagens](#vantagens-lista-circular-dupla)
+  - [Desvantagens](#desvantagens-lista-circular-dupla)
+  - [Algumas Funções da TAD Lista Circular Dupla](#algumas-funções-da-tad-lista-circular-dupla)
 
 
 
 ## Introdução
 
 Uma lista encadeada é uma estrutura de dados que consiste em nós ligados em uma sequência, onde cada nó contém campos: um campo de dados para armazenar informações e para ponteiros.
+
+## Baixar, Compilar e Executar Código de Repositório via Terminal
+
+### Pré-requisitos
+
+Antes de prosseguir, certifique-se de que você tenha o seguinte instalado no seu sistema:
+
+- **Git**: Para baixar o repositório.
+- **Compilador C**: Como o GCC, para compilar o código.
+- **Terminal**: Para executar comandos.
+
+### Passo 1: Clone o Repositório
+
+Abra seu terminal e execute o seguinte comando para clonar o repositório do GitHub:
+
+```bash
+git clone https://github.com/classroom-ufersa/LinkedList.git
+```
+
+### Passo 2: Navegue para o Diretório do Repositório em que está a TAD que quer compilar
+
+Use o comando `cd` para navegar para o diretório do repositório que acabou de ser clonado ou simplesmente abra com terminal integrado na pasta.
+
+```bash
+cd ListaEncadeadaSimples
+cd src
+```
+
+### Passo 3: Compile o Código
+
+Compile-o usando o compilador C. Por exemplo:
+
+```powershell
+gcc -o main main.c
+```
+
+### Passo 4: Execute o Programa
+
+Agora, você pode executar o programa compilado usando o comando `./` no terminal:
+
+```bash
+./main
+```
 
 ## Porque utilizar uma TAD?
 
@@ -588,9 +637,11 @@ struct lista
 
 ### Desvantagens lista circular simples
 
-1. **As mesmas desvantagens da lista simples:** Sim ela também tem as mesmas desvantagens da lista simples e algumas extras como a descrita a seguir. 
+1. **As mesmas desvantagens da lista simples:** Sim ela também tem as mesmas desvantagens da lista simples e algumas extras como as descritas a seguir. 
 
 2. **Dificuldade na Detecção do Fim:** Na lista simples, basta verificar se está apontando para NULL. Na lista circular, uma das soluções para detectar o fim é, antes de começar a percorrer, guardar o nó raiz em um ponteiro auxiliar. A cada passo que você der na lista, compare se aquele nó é igual ao nó raiz. Caso seja igual, significa que você já percorreu toda a lista.
+
+3. **Tratamento de casos especiais:** A manipulação de casos especiais, como a remoção do último elemento da lista, pode ser mais complexa em uma lista circular do que em uma lista encadeada comum. Você precisa lidar com essas situações de forma cuidadosa para evitar erros.
 
 ### **Algumas funções da TAD Lista Circular Simples:**
 
@@ -766,4 +817,242 @@ void listc_imprime(Lista *l)
 
 ```c
 listc_imprime(lista);
+```
+
+## Listas encadeadas circulares duplas
+
+
+### Descrição lista circular dupla
+
+Uma lista encadeada circular dupla é uma estrutura de dados linear que combina as características das listas duplamente encadeadas e das listas circulares simples. Ela consiste em uma sequência de elementos, chamados de nós, onde cada nó armazena um valor (ou dado) e possui ponteiros tanto para o nó anterior quanto para o próximo nó na lista. A característica distintiva dessa estrutura é que o último nó na lista aponta para o primeiro nó, criando um ciclo, enquanto o primeiro nó também aponta para o último.
+
+### Estrutura lista circular dupla
+
+```c
+struct listad
+{
+    int dado;
+    struct listad *prox;
+    struct listad *ant;
+};
+```
+
+- **Dado:** Armazena o valor ou dado representado pelo nó.
+- **Prox:** Um ponteiro que aponta para o próximo nó na lista.
+- **Ant:** Um ponteiro que aponta para o nó anterior na lista.
+
+A estrutura da lista em si consiste em um ponteiro para o primeiro nó (cabeça) e, às vezes, um ponteiro para o último nó (cauda), dependendo da implementação.
+
+
+### Vantagens lista circular dupla
+
+1. **As mesmas vantagens de uma lista dupla:** Porém com algumas extras como a descrita a seguir. 
+
+2. **Inserção e remoção eficientes:** As listas encadeadas circulares duplas permitem inserções e remoções rápidas no início, no final e em qualquer posição da lista, pois aproveitam os ponteiros de nó anterior e próximo.
+
+### Desvantagens lista circular dupla
+
+1. **As mesmas desvantagens de uma lista dupla:** Porém com algumas extras como as descritas a seguir.
+
+2. **Manutenção do ciclo:** Garantir que a lista permaneça circular exige controle rigoroso dos ponteiros de início e fim. Quando você insere ou remove elementos, é necessário garantir que os ponteiros sejam ajustados corretamente para manter a circularidade.
+
+3. **Tratamento de casos especiais:** A manipulação de casos especiais, como a remoção do último elemento da lista, pode ser mais complexa em uma lista circular dupla do que em uma lista duplamente encadeada comum. Você precisa lidar com essas situações de forma cuidadosa para evitar erros.
+
+## Algumas Funções da TAD Lista Circular Dupla
+
+### listdc_cria
+
+- **Descrição:** Inicia uma lista encadeada circular dupla vazia.
+
+```c
+Listad *listdc_cria(void)
+{
+    return NULL;
+}
+```
+- **uso:**
+
+```c
+listdc_libera(lista);
+```
+
+### listdc_libera
+
+- **Descrição:** Libera a memória ocupada pelos nós da lista encadeada circular dupla.
+
+```c
+void listdc_libera(Listad *l)
+{
+    Listad *p = l;
+    if (p != NULL)
+    {
+        do
+        {
+            Listad *t = p->prox;
+            free(p);
+            p = t;
+        } while (p != l);
+    }
+}
+```
+
+- **uso:**
+
+```c
+listdc_libera(lista);
+```
+
+### listdc_adc
+
+- **Descrição:** Insere um novo valor no início da lista encadeada circular dupla.
+
+```c
+Listad *listdc_adc(Listad *l, int v)
+{
+    Listad *novo = (Listad *)malloc(sizeof(Listad));
+    if (novo == NULL)
+    {
+        printf("[ERRO] Memória insuficiente!");
+        exit(1);
+    }
+    novo->dado = v;
+    if (l == NULL) // Se a lista estiver vazia
+    {
+        novo->prox = novo; // O próximo aponta para si mesmo
+        novo->ant = novo; // O anterior aponta para si mesmo
+        return novo;       // Retorna a nova célula como primeira e última
+    }
+    novo->prox = l; // O próximo aponta para a primeira célula
+    novo->ant = l->ant; // O anterior aponta para a última célula
+    l->ant->prox = novo; // Atualiza o próximo da última célula para apontar para a nova célula
+    l->ant = novo; // Atualiza o anterior da primeira célula para apontar para a nova célula
+    return l;             // Retorna a primeira célula da lista
+}
+```
+
+- **uso:**
+
+```c
+lista = listdc_adc(lista, 7);
+```
+
+### listdc_busca
+
+- **Descrição:** Busca por um elemento na lista encadeada circular dupla.
+
+```c
+Listad *listdc_busca(Listad *l, int v)
+{
+    Listad *p = l;
+    while (p != NULL && p->prox != l && p->dado != v)
+    {
+        p = p->prox;
+        if (p->dado == v)
+            return p;
+    }
+    return NULL;
+}
+```
+
+- **uso:**
+
+```c
+Listad *resultado = listdc_busca(7, lista);
+```
+
+### listdc_retira
+
+- **Descrição:** Retira um elemento da lista encadeada circular dupla.
+
+```c
+Listad *listdc_retira(Listad *l, int v)
+{
+    Listad *p = listdc_busca(l, v);
+
+    if (p == NULL)
+    {
+        return l; // Não achou
+    }
+
+    // Retira o elemento
+    if (l == p)
+    { // Testa se é o primeiro elemento
+        if (l->prox == l) // Se for o único elemento na lista
+        {
+            free(l);
+            return NULL; // Retorna lista vazia
+        }
+        else
+        {
+            l = p->prox; // Atualiza o início da lista
+        }
+    }
+
+    p->ant->prox = p->prox; // Retira o do meio ou do final
+    p->prox->ant = p->ant;
+
+    if (l == p) // Se o último elemento está sendo retirado
+    {
+        l = NULL; // Define a lista como vazia
+    }
+
+    free(p);
+    return l;
+}
+```
+
+- **uso:**
+
+```c
+lista = listdc_retira(lista, 7);
+```
+
+### listdc_vazia
+
+- **Descrição:** Verifica se a lista encadeada circular dupla está vazia.
+
+```c
+int listdc_vazia(Listad *l)
+{
+    if (l == NULL)
+        return 1;
+    else
+        return 0;
+}
+```
+
+- **uso:**
+
+```c
+if (listdc_vazia(lista))
+{
+    printf("A lista está vazia.\n");
+}
+```
+
+### listdc_imprime
+
+- **Descrição:** Imprime a informação de todos os elementos da lista encadeada circular dupla.
+
+```c
+void listdc_imprime(Listad *l)
+{
+    if (l == NULL)
+    {
+        printf("Lista vazia.\n");
+        return;
+    }
+    Listad *p = l;
+    do
+    {
+        printf("Dado = %d\n", p->dado);
+        p = p->prox;
+    } while (p != l);
+}
+```
+
+- **uso:**
+
+```c
+listdc_imprime(lista);
 ```

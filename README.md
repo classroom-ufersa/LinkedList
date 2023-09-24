@@ -1,8 +1,8 @@
 # Listas Encadeadas (Linked List)
 
 ## Tópicos
-
 - [Introdução](#introdução)
+- [Como Baixar, Compilar e Executar Código de Repositório via Terminal](#baixar-compilar-e-executar-código-de-repositório-via-terminal)
 - [Porque Utilizar TADS?](#porque-utilizar-uma-tad)
 - [Listas Encadeadas Simples](#listas-encadeadas-simples)
   - [Descrição](#descrição-lista-simples)
@@ -34,6 +34,49 @@
 ## Introdução
 
 Uma lista encadeada é uma estrutura de dados que consiste em nós ligados em uma sequência, onde cada nó contém campos: um campo de dados para armazenar informações e para ponteiros.
+
+## Baixar, Compilar e Executar Código de Repositório via Terminal
+
+### Pré-requisitos
+
+Antes de prosseguir, certifique-se de que você tenha o seguinte instalado no seu sistema:
+
+- **Git**: Para baixar o repositório.
+- **Compilador C**: Como o GCC, para compilar o código.
+- **Terminal**: Para executar comandos.
+
+### Passo 1: Clone o Repositório
+
+Abra seu terminal e execute o seguinte comando para clonar o repositório do GitHub:
+
+```bash
+git clone https://github.com/classroom-ufersa/LinkedList.git
+```
+
+### Passo 2: Navegue para o Diretório do Repositório em que está a TAD que quer compilar
+
+Use o comando `cd` para navegar para o diretório do repositório que acabou de ser clonado ou simplesmente abra com terminal integrado na pasta.
+
+```bash
+cd ListaEncadeadaSimples
+cd src
+```
+
+### Passo 3: Compile o Código
+
+Compile-o usando o compilador C. Por exemplo:
+
+```powershell
+gcc -o main main.c
+```
+
+### Passo 4: Execute o Programa
+
+Agora, você pode executar o programa compilado usando o comando `./` no terminal:
+
+```bash
+./main
+```
 
 ## Porque utilizar uma TAD?
 
